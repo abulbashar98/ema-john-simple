@@ -12,6 +12,11 @@ const Shop = () => {
             .then(data => setProducts(data))
     }, [])
 
+    // Because In React Data flows in Unidirectional way......
+    // Event Handler from Product Component to use in another child Component...
+    const handleAddToCart = (product) => {
+        console.log('clicked', product)
+    }
 
     return (
         <div className='shop-container'>
@@ -19,7 +24,8 @@ const Shop = () => {
                 {
                     products.map(product => <Product
                         key={product.id}
-                        product={product}></Product>)
+                        product={product}
+                        handleAddToCart={handleAddToCart}></Product>)
                 }
             </div>
             <div className="order-summary">Order Summary</div>
