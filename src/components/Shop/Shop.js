@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { addToDb } from '../../utilities/fakedb';
+import { addToDb, getCartFromLocalStorage } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
@@ -14,6 +14,28 @@ const Shop = () => {
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
+
+    useEffect(() => {
+        const storedCart = getCartFromLocalStorage()
+        for (const id in storedCart) {
+            const productsAddedInLocal = products.find(product => product.id === id)
+            console.log(productsAddedInLocal)
+        }
+    }, [])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // Because In React Data flows in Unidirectional way as it is one way binding......
     // Event Handler from Product Component to use in another child Component...
