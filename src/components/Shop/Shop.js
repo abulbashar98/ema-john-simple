@@ -10,21 +10,46 @@ const Shop = () => {
     const [cart, setCart] = useState([]);
 
     useEffect(() => {
+        console.log('Load Data 1st line')
         fetch('products.json')
             .then(res => res.json())
-            .then(data => setProducts(data))
+            .then(data => {
+                setProducts(data)
+                console.log('Load products finished')
+            })
     }, [])
 
     useEffect(() => {
+        console.log('local storage 1st line', products)
         const storedCart = getCartFromLocalStorage()
+        const savedInCart = [];
         for (const id in storedCart) {
             const productsAddedInLocal = products.find(product => product.id === id)
-            console.log(productsAddedInLocal)
+
+            if (productsAddedInLocal) {
+                // Huge mistake in here we are trying to set quantity in Local Storage
+                // storing variable... But unfortunately productsAddedInLocal doesn't have any connection with Local Storage.... It is just an array.... 
+                // const quantity = productsAddedInLocal[id];
+
+                // Correction
+                const quantity = storedCart[id];
+                productsAddedInLocal.quantity = quantity;
+
+                console.log(productsAddedInLocal)
+                savedInCart.push(productsAddedInLocal);
+
+            }
+            setCart(savedInCart)
         }
-    }, [])
+        console.log('Local Storage finished')
+    }, [products])
 
 
-
+    // NOTE: Headline is: Dependency Injection.... as useEffect() hooks Works Asynchronously,
+    //      useEffect() For getting local storage runs Before the useEffect where we Load products
+    //   For that reason useEffect() hook runs only once where we seek products before
+    //   it is loaded... Illustration in 4 console.logs we are using.....
+    //   to Solve this problem and Run useEffect() of local storage after products are loaded we set The Dependency parameter of useEffect() to products.... That means it Runs whenever the products State changes  
 
 
 
