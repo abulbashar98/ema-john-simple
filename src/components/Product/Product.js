@@ -1,4 +1,5 @@
 import React from 'react';
+import { BsFillCartCheckFill } from 'react-icons/bs'
 import './product.css'
 
 const Product = (props) => {
@@ -22,8 +23,9 @@ const Product = (props) => {
             {/* <button onClick={() => props.handleAddToCart(props.product)} className='btn-cart'> */}
             <button onClick={() => handleAddToCart(product)} className='btn-cart'>
                 <p>Add to Cart</p>
+                <BsFillCartCheckFill icon={BsFillCartCheckFill}></BsFillCartCheckFill>
             </button>
-        </div>
+        </div >
     );
 };
 

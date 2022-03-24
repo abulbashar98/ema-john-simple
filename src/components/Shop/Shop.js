@@ -21,6 +21,7 @@ const Shop = () => {
         //Note: Generally we use array.push(product) to add an element To te existing
         //      array... But in React we use spread Operators to copy then add the New
         //      product..... Because that helps Virtual dom to function....
+        //       and state is immutable.....
 
         const newCart = [...cart, product];
         setCart(newCart)
@@ -38,7 +39,9 @@ const Shop = () => {
                         handleAddToCart={handleAddToCart}></Product>)
                 }
             </div>
-            <div className="order-summary">Order Summary: {cart.length}</div>
+            <div className="order-summary">Order Summary
+                <h3>Selected Items: {cart.length}</h3>
+            </div>
         </div>
     );
 };
