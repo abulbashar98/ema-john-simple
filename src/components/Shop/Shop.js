@@ -5,6 +5,7 @@ import './Shop.css'
 const Shop = () => {
 
     const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
 
     useEffect(() => {
         fetch('products.json')
@@ -12,11 +13,20 @@ const Shop = () => {
             .then(data => setProducts(data))
     }, [])
 
-    // Because In React Data flows in Unidirectional way......
+    // Because In React Data flows in Unidirectional way as it is one way binding......
     // Event Handler from Product Component to use in another child Component...
     const handleAddToCart = (product) => {
-        console.log('clicked', product)
+        // console.log('clicked', product)
+
+        //Note: Generally we use array.push(product) to add an element To te existing
+        //      array... But in React we use spread Operators to copy then add the New
+        //      product..... Because that helps Virtual dom to function....
+
+        const newCart = [...cart, product];
+        setCart(newCart)
     }
+
+
 
     return (
         <div className='shop-container'>
@@ -28,7 +38,7 @@ const Shop = () => {
                         handleAddToCart={handleAddToCart}></Product>)
                 }
             </div>
-            <div className="order-summary">Order Summary</div>
+            <div className="order-summary">Order Summary: {cart.length}</div>
         </div>
     );
 };
