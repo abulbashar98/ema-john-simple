@@ -19,6 +19,26 @@ const Shop = () => {
             })
     }, [])
 
+    // Note: 2nd time practice...
+    // useEffect(() => {
+    //     const storedCart = getCartFromLocalStorage()
+    //     const savedProducts = [];
+    //     for (const id in storedCart) {
+    //         const addedProductsInLocal = products.find(product => product.id === id)
+    //         if (addedProductsInLocal) {
+    //             const quantity = storedCart[id];
+    //             addedProductsInLocal.quantity = quantity
+    //             // console.log(addedProductsInLocal)
+    //             savedProducts.push(addedProductsInLocal)
+    //         }
+    // setCart(savedProducts)
+    //     }
+    //     
+
+    // }, [products])
+
+
+
     useEffect(() => {
         console.log('local storage 1st line', products)
         const storedCart = getCartFromLocalStorage()
@@ -44,19 +64,13 @@ const Shop = () => {
         console.log('Local Storage finished')
     }, [products])
 
-
     // NOTE: Headline is: Dependency Injection.... as useEffect() hooks Works Asynchronously,
     //      useEffect() For getting local storage runs Before the useEffect where we Load products
     //   For that reason useEffect() hook runs only once where we seek products before
     //   it is loaded... Illustration in 4 console.logs we are using.....
-    //   to Solve this problem and Run useEffect() of local storage after products are loaded we set The Dependency parameter of useEffect() to products.... That means it Runs whenever the products State changes  
-
-
-
-
-
-
-
+    //   to Solve this problem and Run useEffect() of local storage after products are 
+    //   loaded we set The Dependency parameter of useEffect() to products.... 
+    //   That means it Runs whenever the products State changes  
 
 
 

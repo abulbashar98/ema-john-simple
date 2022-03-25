@@ -2,13 +2,22 @@ import React from 'react';
 import './Cart.css'
 
 const Cart = ({ cart }) => {
-    // console.log(cart)
+    console.log(cart)
 
+    //  NOTE: We previously have set the quantity properties of Products we found using
+    //    find() pushed them to an Array and Sent them here in Cart using 
+    //   setCart() state.... But yet we are not using them to set the Selected Items, 
+    //   or values,prices in terms of quantity...... Let's solve using quantity...
+
+
+
+    let quantity = 0;
     let total = 0;
     let ShippingCharge = 0;
 
     for (const product of cart) {
-        total = total + product.price;
+        quantity = quantity + product.quantity;
+        total = total + product.price * product.quantity;
         ShippingCharge = ShippingCharge + product.shipping;
     }
 
@@ -21,7 +30,7 @@ const Cart = ({ cart }) => {
     return (
         <div className='cart'>
             <h1>Order Summary</h1>
-            <h4>Selected Items: {cart.length}</h4>
+            <h4>Selected Items: {quantity}</h4>
             <h4>Total Price: ${total}</h4>
             <h4>Total Shipping Charge: ${ShippingCharge}</h4>
             <h4>Tax: ${tax}</h4>
