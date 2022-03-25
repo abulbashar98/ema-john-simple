@@ -17,7 +17,7 @@ const Cart = ({ cart }) => {
 
     for (const product of cart) {
         quantity = quantity + product.quantity;
-        total = total + product.price * product.quantity;
+        total = total + (product.price * product.quantity);
         ShippingCharge = ShippingCharge + product.shipping;
     }
 

@@ -40,7 +40,7 @@ const Shop = () => {
 
 
     useEffect(() => {
-        console.log('local storage 1st line', products)
+        // console.log('local storage 1st line', products)
         const storedCart = getCartFromLocalStorage()
         const savedInCart = [];
         for (const id in storedCart) {
@@ -55,13 +55,14 @@ const Shop = () => {
                 const quantity = storedCart[id];
                 productsAddedInLocal.quantity = quantity;
 
-                console.log(productsAddedInLocal)
+                // console.log(productsAddedInLocal)
                 savedInCart.push(productsAddedInLocal);
 
             }
+            console.log('works now')
             setCart(savedInCart)
         }
-        console.log('Local Storage finished')
+        // console.log('Local Storage finished')
     }, [products])
 
     // NOTE: Headline is: Dependency Injection.... as useEffect() hooks Works Asynchronously,
@@ -76,20 +77,61 @@ const Shop = () => {
 
 
 
+
+
+
+
+
     // Because In React Data flows in Unidirectional way as it is one way binding......
     // Event Handler from Product Component to use in another child Component...
-    const handleAddToCart = (product) => {
-        // console.log('clicked', product)
+    // const handleAddToCart = (product) => {
+    //     console.log('clicked', product)
 
-        //Note: Generally we use array.push(product) to add an element To te existing
-        //      array... But in React we use spread Operators to copy then add the New
-        //      product..... Because that helps Virtual dom to function....
-        //       and state is immutable.....
+    //     //Note: Generally we use array.push(product) to add an element To te existing
+    //     //      array... But in React we use spread Operators to copy then add the New
+    //     //      product..... Because that helps Virtual dom to function....
+    //     //       and state is immutable.....
 
-        const newCart = [...cart, product];
+    //     const newCart = [...cart, product];
+    //     setCart(newCart)
+    //     addToDb(product.id)
+    // }
+
+
+
+    const handleAddToCart = (selectedProduct) => {
+        console.log('clicked', selectedProduct)
+
+        //Note:  At this stage both   Local Storage and Products added in Cart as
+        //       saved products are not uPdating onClick at the same time... 
+        //      We have seen on Console that onClick Value in Stored Cart Object
+        //       is increasing by 1, if the id already exists in local cart...
+        //      but the Default value of Products quantity property was 0.. they 
+        //     passed in cart with quantity property value of 0.... 
+
+
+        // Realization: As default quantity value is 0 for the products.... We sent all
+        //              the products on click to cart and Checked for the product that          holds the event 
+        //  handler button.... if thar exists we send that besides all products and and add to the quantity in that way... If it does not exist yet we set the product quantity 1... and send it Besides the rest products holding 0 quantity by default.... In terms of reload it uses the useEffect() as dependency products changed... Takes the keys and values from Local storage... find products and quantities in them and setCart() 
+
+
+        let newCart = [];
+        const exists = products.find(product => product.id === selectedProduct.id);
+        if (!exists) {
+            selectedProduct.quantity = 1;
+            newCart = [cart, selectedProduct]
+        }
+        else {
+            const rest = products.filter(product => product.id !== selectedProduct.id)
+            exists.quantity = exists.quantity + 1;
+            newCart = [...rest, exists];
+        }
+
         setCart(newCart)
-        addToDb(product.id)
+        addToDb(selectedProduct.id)
     }
+
+
 
 
 
