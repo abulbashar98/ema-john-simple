@@ -25,7 +25,7 @@ const Shop = () => {
     //             savedProducts.push(addedProductsInLocal)
     //         }
     // setCart(savedProducts)
-    //     }
+    //     } 
     //     
 
     // }, [products])
