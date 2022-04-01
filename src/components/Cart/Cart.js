@@ -1,8 +1,9 @@
 import React from 'react';
 import './Cart.css'
 
-const Cart = ({ cart }) => {
-    console.log(cart)
+const Cart = (props) => {
+    const { cart } = props;
+    console.log(props.children)
 
     //  NOTE: We previously have set the quantity properties of Products we found using
     //    find() pushed them to an Array and Sent them here in Cart using 
@@ -35,6 +36,7 @@ const Cart = ({ cart }) => {
             <h4>Total Shipping Charge: ${ShippingCharge}</h4>
             <h4>Tax: ${tax}</h4>
             <h2>Grand Total: ${grandTotal.toFixed(2)}</h2>
+            {props.children}
         </div>
     );
 };
