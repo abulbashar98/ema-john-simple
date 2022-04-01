@@ -1,9 +1,12 @@
 import React from 'react';
 import './ReviewItem.css'
+import { RiDeleteBinLine } from 'react-icons/ri';
 
 const ReviewItem = (props) => {
 
-    const { name, img, price, shipping, quantity } = props.product;
+    const { handleRemoveProduct, product } = props;
+
+    const { name, img, price, shipping, quantity } = product;
 
     return (
 
@@ -20,7 +23,9 @@ const ReviewItem = (props) => {
                     <p><small>Quantity: {quantity}</small></p>
                 </div>
                 <div className="delete-container">
-                    <button>Delete</button>
+                    <button onClick={() => handleRemoveProduct(product)} className='delete-btn'>
+                        <RiDeleteBinLine className='delete-icon'></RiDeleteBinLine>
+                    </button>
                 </div>
             </div>
         </div>
