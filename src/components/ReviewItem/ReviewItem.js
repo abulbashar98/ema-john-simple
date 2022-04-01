@@ -18,9 +18,9 @@ const ReviewItem = (props) => {
                 <div className="review-item-details">
                     <p className="product-name" title={name}>
                         {name.length > 20 ? name.slice(0, 20) + '...' : name}</p>
-                    <p>Price: <span className='orange-color'>{price}</span></p>
-                    <p><small>Shipping: {shipping}</small></p>
-                    <p><small>Quantity: {quantity}</small></p>
+                    <p>Price: <span className='orange-color'>${price}</span></p>
+                    <p><small>Shipping: <span className='orange-color'>${shipping}</span></small></p>
+                    <p><small>Quantity: <span className='orange-color'>${quantity}</span></small></p>
                 </div>
                 <div className="delete-container">
                     <button onClick={() => handleRemoveProduct(product)} className='delete-btn'>

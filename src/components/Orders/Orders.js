@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useCart from '../../hooks/useCart';
 import useProducts from '../../hooks/useProducts';
 import { removeFromDb } from '../../utilities/fakedb';
@@ -12,6 +12,7 @@ const Orders = () => {
 
     const [products, setProducts] = useProducts()
     const [cart, setCart] = useCart(products)
+    const navigate = useNavigate();
 
 
     const handleRemoveProduct = product => {
@@ -33,9 +34,9 @@ const Orders = () => {
             </div>
             <div className='cart-container'>
                 <Cart cart={cart}>
-                    <Link to='/inventory'>
-                        <button>Proceed Checkout</button>
-                    </Link>
+
+                    <button onClick={() => navigate('/inventory')}>Proceed Checkout</button>
+
                 </Cart>
             </div>
         </div>

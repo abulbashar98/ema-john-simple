@@ -13,8 +13,9 @@
 
 .review-item-details-container {
     display: flex;
-    width: 100%;
+    width: 90%;
     justify-content: space-between;
+    margin-left: 10px;
 }
 
 .review-item-details p {
@@ -39,4 +40,8 @@
 .delete-icon {
     color: rgba(235, 87, 87, 1);
     font-size: 27px;
+}
+
+.orange-color {
+    color: orange;
 }
