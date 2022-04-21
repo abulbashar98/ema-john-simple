@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../firebase.init';
 import './Login.css'
 
@@ -8,12 +8,18 @@ const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [errorState, setErrorState] = useState('')
 
-    const navigate = useNavigate();
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error]
+        = useSignInWithEmailAndPassword(auth);
 
-    const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+    const navigate = useNavigate()
+    const location = useLocation();
 
+    const from = location.state?.from?.pathname || '/';
 
     const handleEmailBlur = event => {
         setEmail(event.target.value)
@@ -22,10 +28,10 @@ const Login = () => {
     const handlePasswordBlur = event => {
         setPassword(event.target.value)
     }
-    if (user) {
-        navigate('/shop')
-    }
 
+    if (user) {
+        navigate(from, { replace: true });
+    }
 
 
     const handleSignInWithEmailAndPassword = event => {
@@ -49,7 +55,7 @@ const Login = () => {
                     </div>
                     <p style={{ color: 'red' }}>{error && error.message}</p>
                     {
-                        loading && <p>Loadinig...</p>
+                        loading && <p>Loading...</p>
                     }
 
                     <input className='form-submit' type="submit" value="Login" required />
