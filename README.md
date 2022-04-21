@@ -20,12 +20,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 14. if the user is created and returned successfully we can redirect  to shop using useNavigate Hook...
 15. use Sign in function from React Firebase Hooks to Create Sign In functionalities...
 16. Showing Error and Loading From Firebase using Conditional Rendering....
-17. Solved cant resolve react-dom-client error by upgrading to React 18 and updating all the dependancies using :-(
+17. Solved cant resolve react-dom-client error by upgrading to React 18 and updating all the dependencies using :-(
 npm i -g npm-check-updates
 ncu -u
 npm install)
 
 link:-(https://stackoverflow.com/questions/16073603/how-to-update-each-dependency-in-package-json-to-the-latest-version)
+
+18. Created Shipping Component and Route, navigated from cart proceed checkOut..
+19. Protected Shipping Component and Inventory using RequireAuth... 
+20. Sending User Back to the Location using from: location, after log in
+
+
 
 
 
