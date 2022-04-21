@@ -54,7 +54,7 @@ const Shipment = () => {
     return (
         <div className='form-container'>
             <div>
-                <h1 className='form-title'>Shipping Information</h1>
+                <h1 className='form-title'>Your Shipping Information</h1>
                 <form onSubmit={handleCreateUserWithEmailAndPassword}>
                     <div className="input-group">
                         <label htmlFor="name">Your Name</label>

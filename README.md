@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was deployed in Firebase [ema-john-simple](https://ema-john-simple-12ef7.web.app/login).
 
 ## Steps for Authentication....
 
@@ -41,6 +41,25 @@ link:-(https://stackoverflow.com/questions/16073603/how-to-update-each-dependenc
 
 ## Hosting Steps...
 
-1. firebase login
-2. firebase init
-3. firebase deploy
+1. Go to HomePage > settings > Hosting
+2. npm install -g firebase-tools  (One time for your Computer)
+3. firebase login
+* allow firebase cli 
+
+4. firebase init (one time for each project)
+* want to proceed - y
+*  choose using SPACE:- Hosting: Configure files for Firebase Hosting and(optionally) set up Github Action deploys
+* use an existing project
+* choose Matching Name
+* What do you want to use as public directory??? Ans: build
+* Configure as SPA. y
+* Set up Automatic deploys and builds using github??? n
+
+5. npm run build (build your project) (every time you want to deploy)
+6. firebase deploy
+
+
+## To change build every time
+
+1. npm run build
+2. firebase deploy
